@@ -10,6 +10,7 @@ use Tests\TestCase;
 class DepartmentTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A test to check relationship departments has many to employees.
      */
