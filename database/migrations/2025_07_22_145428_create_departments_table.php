@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('department_name', 255);
             $table->time('max_clock_in_time');
             $table->time('max_clock_out_time');
+            $table->timestamps();
         });
     }
 
