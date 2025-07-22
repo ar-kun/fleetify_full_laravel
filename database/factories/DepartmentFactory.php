@@ -18,8 +18,8 @@ class DepartmentFactory extends Factory
     {
         return [
             'department_name' => $this->faker->company,
-            'max_clock_in_time' => $this->faker->time(),
-            'max_clock_out_time' => $this->faker->time(),
+            'max_clock_in_time' => $maxClockInTime = $this->faker->time(),
+            'max_clock_out_time' => (new \DateTime($maxClockInTime))->add(new \DateInterval('PT' . $this->faker->numberBetween(540, 600) . 'M'))->format('H:i:s'),
         ];
     }
 }
