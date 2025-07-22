@@ -1,0 +1,37 @@
+name: Fix blade and php files style code
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  fix-style-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          ssh-key: ${{ secrets.FIX_STYLING_SSH_KEY }}
+
+      - name: Run Linting (Laravel Pint)
+        uses: aglipanci/laravel-pint-action@2.0.0
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Run Blade Formatter
+        run: ./node_modules/.bin/blade-formatter --write 'resources/**/*.blade.php'
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: Fix styling created by github actions
+          body: |
+            This PR was created by github actions to fix styling issues.
+            Styling use [prettier-plugin-blade](https://github.com/shufo/prettier-plugin-blade) for blade files and [Laravel Pint](https://laravel.com/docs/10.x/pint) for php files.
+            Please review and merge it if you agree with the changes.
+          branch: fix-styling/${{ github.ref_name }}
+          commit-message: Fix styling (php-cs-fixer & blade formatter github actions)
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          delete-branch: true
