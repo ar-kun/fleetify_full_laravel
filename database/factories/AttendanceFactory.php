@@ -17,7 +17,7 @@ class AttendanceFactory extends Factory
     public function definition(): array
     {
         return [
-            'employee_id' => \App\Models\Employee::factory(),
+            'employee_id' => \App\Models\Employee::inRandomOrder()->first()->employee_id ?? \App\Models\Employee::factory(),
             'attendance_id' => $this->faker->unique()->uuid,
             'clock_in' => $this->faker->dateTimeBetween('-10 hours', 'now'),
             'clock_out' => $this->faker->dateTimeBetween('now', '+10 hours'),

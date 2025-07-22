@@ -17,8 +17,8 @@ class AttendanceHistoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'employee_id' => \App\Models\Employee::factory(),
-            'attendance_id' => \App\Models\Attendance::factory(),
+            'employee_id' => \App\Models\Employee::inRandomOrder()->first()->employee_id ?? \App\Models\Employee::factory(),
+            'attendance_id' => \App\Models\Attendance::inRandomOrder()->first()->attendance_id ?? \App\Models\Attendance::factory(),
             'date_attendance' => $this->faker->dateTimeThisYear(),
             'attendance_type' => $this->faker->numberBetween(1, 2),
             'created_at' => now(),
