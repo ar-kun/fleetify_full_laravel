@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Attendance
- * 
+ *
  * @property int $id
  * @property string $employee_id
  * @property string $attendance_id
@@ -21,37 +21,34 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $clock_out
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
  * @property Employee $employee
  * @property Collection|AttendanceHistory[] $attendance_histories
- *
- * @package App\Models
  */
 class Attendance extends Model
 {
-	use HasFactory;
+    use HasFactory;
 
-	protected $table = 'attendances';
+    protected $table = 'attendances';
 
-	protected $casts = [
-		'clock_in' => 'datetime',
-		'clock_out' => 'datetime'
-	];
+    protected $casts = [
+        'clock_in' => 'datetime',
+        'clock_out' => 'datetime',
+    ];
 
-	protected $fillable = [
-		'employee_id',
-		'attendance_id',
-		'clock_in',
-		'clock_out'
-	];
+    protected $fillable = [
+        'employee_id',
+        'attendance_id',
+        'clock_in',
+        'clock_out',
+    ];
 
-	public function employee()
-	{
-		return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');
-	}
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');
+    }
 
-	public function attendanceHistories()
-	{
-		return $this->hasMany(AttendanceHistory::class, 'attendance_id', 'attendance_id');
-	}
+    public function attendanceHistories()
+    {
+        return $this->hasMany(AttendanceHistory::class, 'attendance_id', 'attendance_id');
+    }
 }
