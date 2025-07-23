@@ -34,6 +34,29 @@
             {{ $slot }}
         </main>
     </div>
+    @include('sweetalert2::index')
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            window.confirmDeleteDepartment = function(id) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('delete-department-form-' + id).submit();
+                    }
+                });
+            };
+        });
+    </script>
+
 </body>
 
 </html>
