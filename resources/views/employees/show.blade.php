@@ -10,7 +10,8 @@
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="mt-4 grid grid-cols-2 gap-6">
                     <p><strong>{{ __('Name:') }}</strong> {{ $employee->name }}</p>
-                    <p><strong>{{ __('Department:') }}</strong> {{ $employee->department->department_name ?? 'N/A' }}</p>
+                    <p><strong>{{ __('Department:') }}</strong> {{ $employee->department->department_name ?? 'N/A' }}
+                    </p>
                     <p><strong>{{ __('Address:') }}</strong> {{ $employee->address }}</p>
                 </div>
             </div>
