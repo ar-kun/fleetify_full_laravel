@@ -1,14 +1,15 @@
 <?php
 
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::redirect('/', '/dashboard');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -18,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/employees', EmployeeController::class);
 
     Route::post('/attendance_in', [AttendanceController::class, 'attendanceIn'])->name('attendance.in');
+    Route::post('/attendance_out', [AttendanceController::class, 'attendanceOut'])->name('attendance.out');
 });
 
 require __DIR__ . '/auth.php';
