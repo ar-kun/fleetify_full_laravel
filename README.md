@@ -93,9 +93,9 @@ Proyek akan diakses pada `http://localhost:8080` / `http://127.0.0.1:8080` secar
 
 ### Generate Coverage Report
 
-1. **Jalankan testing dengan coverage report: ./vendor/bin/phpunit --coverage-html ./storage/app/public/coverage.**
-2. **Jalankan server web: php artisan serve.**
-3. **Buka browser dan akses http://127.0.0.1:8000/storage/coverage/index.html (Sesuaikan host jika berbeda).**
+1. Jalankan testing dengan coverage report: ```./vendor/bin/phpunit --coverage-html ./storage/app/public/coverage.```
+2. Jalankan server web: ```composer run dev```.
+3. Buka browser dan akses ```http://127.0.0.1:8000/storage/coverage/index.html``` (Sesuaikan host jika berbeda).
 
 ### Coverage Result
 
