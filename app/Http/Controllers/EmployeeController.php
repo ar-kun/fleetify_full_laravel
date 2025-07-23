@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class EmployeeController extends Controller
 {
@@ -21,15 +24,25 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $departments = \App\Models\Department::all();
+        return view('employees.create', compact('departments'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
-        //
+        try {
+            $data = $request->validated();
+            $data['employee_id'] = 'EMP-' . Str::random(10);
+            Employee::create($data);
+            return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
+        } catch (\Throwable $th) {
+            Log::error('Failed to create employee', ['exception' => $th]);
+
+            return redirect()->back()->withErrors(['error' => 'Failed to create employee. Please try again later.']);
+        }
     }
 
     /**
