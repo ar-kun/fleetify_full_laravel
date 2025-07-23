@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AttendanceHistoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
@@ -20,6 +21,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/attendance_in', [AttendanceController::class, 'attendanceIn'])->name('attendance.in');
     Route::post('/attendance_out', [AttendanceController::class, 'attendanceOut'])->name('attendance.out');
+
+    Route::get('/attendance_history', [AttendanceHistoryController::class, 'index'])->name('attendance.history');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

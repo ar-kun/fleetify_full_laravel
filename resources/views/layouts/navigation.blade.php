@@ -33,6 +33,14 @@
                         {{ __('Employees') }}
                     </x-nav-link>
                 </div>
+
+                {{-- Attendance History Link --}}
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('attendance.history')" :active="request()->routeIs('attendance.history')" class="flex gap-2">
+                        <i class="fa-solid fa-clock"></i>
+                        {{ __('Attendance History') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
