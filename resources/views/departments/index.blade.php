@@ -23,7 +23,7 @@
                                 <input type="text" id="table-search" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
                             </div>
                           </div>
-                          <a href="{{ route('departments.create') }}" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Create</a>
+                          <a href="{{ route('departments.create') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 shadow-[2px_2px_2px_1px_rgb(0_0_255_/_0.2)] hover:shadow-none"><i class="fa-solid fa-plus"></i> Create</a>
                           </div>
                           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                               <tr>
@@ -54,7 +54,8 @@
                                           {{ $item->max_clock_out_time }}
                                       </td>
                                       <td class="px-6 py-4 text-right">
-                                          <a href="{{ route('departments.edit', $item->id) }}" type="button" class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">Edit</a>
+                                        <a href="{{ route('departments.show', $item->id) }}" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"><i class="fa-solid fa-eye"></i> View</a>
+                                          <a href="{{ route('departments.edit', $item->id) }}" type="button" class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                                           <form id="delete-department-form-{{ $item->id }}" action="{{ route('departments.destroy', $item->id) }}" method="POST" style="display: inline;">
                                               @csrf
                                               @method('DELETE')
@@ -63,7 +64,7 @@
                                                   onclick="confirmDeleteDepartment({{ $item->id }})"
                                                   class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900 cursor-pointer"
                                               >
-                                                  Delete
+                                                  <i class="fa-solid fa-trash"></i> Delete
                                               </button>
                                           </form>
                                       </td>
@@ -79,7 +80,6 @@
                                   </tr>
                               </tfoot>
                           @endif
-                          
                       </table>
                   </div>
 
