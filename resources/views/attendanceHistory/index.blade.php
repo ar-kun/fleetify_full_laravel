@@ -11,9 +11,9 @@
                 <div class="w-full">
                     <div class="relative overflow-x-auto sm:rounded-lg">
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                            <div class="flex items-center justify-between p-5">
-                                <div class="pb-4 bg-white dark:bg-gray-900">
-                                    <form method="GET" action="{{ route('attendance.history') }}" class="mb-4">
+                            <div class="flex items-center justify-around p-5">
+                                <div class="pb-4 bg-white dark:bg-gray-900 flex items-center gap-4">
+                                  <form method="GET" action="{{ route('attendance.history') }}" class="mb-4">
                                       <div class="relative mt-1">
                                           <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                               <svg class="w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -26,6 +26,32 @@
                                               value="{{ request('search') }}"
                                               class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
                                               placeholder="Search for employees...">
+                                      </div>
+                                  </form>
+                                  <form method="GET" action="{{ route('attendance.history') }}" class="flex gap-4 items-end mb-6">
+                                      <div>
+                                        {{-- department_id  --}}
+                                          <select id="department_id" name="department_id"
+                                              class="block w-full text-slate-700 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                              <option value="" selected>All department</option>
+                                              @foreach ($departments as $department)
+                                                  <option value="{{ $department->id }}" class="text-slate-800" @selected(request('department_id') == $department->id)>
+                                                      {{ $department->department_name }}</option>
+                                              @endforeach
+                                          </select>
+                                          <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
+                                      </div>
+
+                                      {{-- date_attendance --}}
+                                      <div>
+                                          <input type="date" name="date_attendance" id="date_attendance"
+                                              value="{{ request('date_attendance') }}"
+                                              class="block w-full text-slate-700 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                          <x-input-error :messages="$errors->get('date_attendance')" class="mt-2" />
+                                      </div>
+
+                                      <div>
+                                          <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md cursor-pointer">Filter</button>
                                       </div>
                                   </form>
 
