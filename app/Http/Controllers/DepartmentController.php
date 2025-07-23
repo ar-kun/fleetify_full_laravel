@@ -72,6 +72,11 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        try {
+            $department->delete();
+            return redirect()->route('departments.index')->with('success', 'Department deleted successfully.');
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors(['error' => 'Failed to delete department: ' . $th->getMessage()]);
+        }
     }
 }
