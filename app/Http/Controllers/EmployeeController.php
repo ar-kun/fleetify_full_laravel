@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EmployeeRequest;
+use App\Models\Department;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -24,7 +25,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $departments = \App\Models\Department::all();
+        $departments = Department::all();
         return view('employees.create', compact('departments'));
     }
 
@@ -58,7 +59,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        $departments = \App\Models\Department::all();
+        $departments = Department::all();
         return view('employees.edit', compact('employee', 'departments'));
     }
 

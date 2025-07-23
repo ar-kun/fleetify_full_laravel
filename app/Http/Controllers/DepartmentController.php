@@ -13,7 +13,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::paginate(5);
+        $departments = Department::latest()->paginate(5);
 
         return view('departments.index', compact('departments'));
     }
@@ -68,7 +68,7 @@ class DepartmentController extends Controller
 
             return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
         } catch (\Throwable $th) {
-            Log::error('Failed to update department: '.$th->getMessage(), ['exception' => $th]);
+            Log::error('Failed to update department: ' . $th->getMessage(), ['exception' => $th]);
 
             return redirect()->back()->withErrors(['error' => 'Failed to update department. Please try again later.']);
         }
