@@ -12,8 +12,17 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="flex gap-2">
+                        <i class="fa-solid fa-house"></i>
                         {{ __('Dashboard') }}
+                    </x-nav-link>
+                </div>
+
+                <!-- Departments Link -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('departments.index')" :active="request()->routeIs('departments.*')" class="flex gap-2">
+                        <i class="fa-solid fa-folder-open"></i>
+                        {{ __('Departments') }}
                     </x-nav-link>
                 </div>
             </div>
