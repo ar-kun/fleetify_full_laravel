@@ -49,8 +49,8 @@ class DepartmentRequest extends FormRequest
             'department_name.required' => 'The department name is required.',
             'max_clock_in_time.required' => 'The max clock in time is required.',
             'max_clock_out_time.required' => 'The max clock out time is required.',
-            'max_clock_in_time.date_format' => 'The max clock in time must be in the format HH:MM.',
-            'max_clock_out_time.date_format' => 'The max clock out time must be in the format HH:MM.',
+            'max_clock_in_time.date_format' => 'The max clock in time must be in the format HH:MM:SS.',
+            'max_clock_out_time.date_format' => 'The max clock out time must be in the format HH:MM:SS.',
         ];
     }
 }

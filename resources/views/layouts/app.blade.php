@@ -41,9 +41,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            window.confirmDeleteDepartment = function(id) {
+            window.confirmDeleteEntity = function(entityType, id) {
                 Swal.fire({
-                    title: 'Are you sure?',
+                    title: `Are you sure you want to delete this ${entityType}?`,
                     text: "You won't be able to revert this!",
                     icon: 'warning',
                     showCancelButton: true,
@@ -52,7 +52,7 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        document.getElementById('delete-department-form-' + id).submit();
+                        document.getElementById(`delete-${entityType}-form-${id}`).submit();
                     }
                 });
             };
