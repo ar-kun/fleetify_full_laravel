@@ -27,6 +27,10 @@ class AttendanceHistory extends Model
 {
     use HasFactory;
 
+    const CHECK_IN = 1;
+
+    const CHECK_OUT = 2;
+
     protected $table = 'attendance_histories';
 
     protected $casts = [

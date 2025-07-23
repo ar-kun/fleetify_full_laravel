@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
@@ -15,6 +16,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/departments', DepartmentController::class);
     Route::resource('/employees', EmployeeController::class);
+
+    Route::post('/attendance_in', [AttendanceController::class, 'attendanceIn'])->name('attendance.in');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
