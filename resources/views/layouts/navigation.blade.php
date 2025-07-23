@@ -25,6 +25,14 @@
                         {{ __('Departments') }}
                     </x-nav-link>
                 </div>
+
+                {{-- Employee Link --}}
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.*')" class="flex gap-2">
+                        <i class="fa-solid fa-users"></i>
+                        {{ __('Employees') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

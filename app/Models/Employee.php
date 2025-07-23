@@ -42,6 +42,11 @@ class Employee extends Model
         'address',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'employee_id';
+    }
+
     public function department()
     {
         return $this->belongsTo(Department::class);
