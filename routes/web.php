@@ -22,4 +22,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/attendance_out', [AttendanceController::class, 'attendanceOut'])->name('attendance.out');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
