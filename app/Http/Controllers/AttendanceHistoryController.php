@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\AttendanceHistory;
 use App\Models\Department;
-use Illuminate\Http\Request;
 
 class AttendanceHistoryController extends Controller
 {
@@ -13,7 +12,7 @@ class AttendanceHistoryController extends Controller
         $attendanceHistory = AttendanceHistory::with('employee')
             ->when(request('search'), function ($query) {
                 $query->whereHas('employee', function ($q) {
-                    $q->where('name', 'like', '%' . request('search') . '%');
+                    $q->where('name', 'like', '%'.request('search').'%');
                 });
             })
             ->when(request('department_id'), function ($query) {
