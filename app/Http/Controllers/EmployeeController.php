@@ -17,7 +17,7 @@ class EmployeeController extends Controller
     {
         $employees = Employee::with('department')
             ->when(request('search'), function ($query) {
-                $query->where('name', 'like', '%' . request('search') . '%');
+                $query->where('name', 'like', '%'.request('search').'%');
             })
             ->latest()->paginate(5);
 
@@ -41,7 +41,7 @@ class EmployeeController extends Controller
     {
         try {
             $data = $request->validated();
-            $data['employee_id'] = 'EMP-' . Str::random(10);
+            $data['employee_id'] = 'EMP-'.Str::random(10);
             Employee::create($data);
 
             return redirect()->route('employees.index')->with('success', 'Employee created successfully.');

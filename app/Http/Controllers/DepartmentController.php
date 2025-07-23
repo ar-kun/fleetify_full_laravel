@@ -15,7 +15,7 @@ class DepartmentController extends Controller
     {
         $departments = Department::latest()
             ->when(request('search'), function ($query) {
-                $query->where('department_name', 'like', '%' . request('search') . '%');
+                $query->where('department_name', 'like', '%'.request('search').'%');
             })
             ->paginate(5);
 
@@ -72,7 +72,7 @@ class DepartmentController extends Controller
 
             return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
         } catch (\Throwable $th) {
-            Log::error('Failed to update department: ' . $th->getMessage(), ['exception' => $th]);
+            Log::error('Failed to update department: '.$th->getMessage(), ['exception' => $th]);
 
             return redirect()->back()->withErrors(['error' => 'Failed to update department. Please try again later.']);
         }
