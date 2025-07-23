@@ -9,9 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-end">
-                    <form id="attendance-form-in"
-                        action="{{ route('attendance.in') }}"
-                        method="POST" style="display: inline;">
+                    <form id="attendance-form-in" action="{{ route('attendance.in') }}" method="POST"
+                        style="display: inline;">
                         @csrf
                         @method('POST')
                         <input type="hidden" name="employee_id" value="{{ auth()->user()->employee_id }}">
@@ -28,15 +27,18 @@
                             <i class="fa-solid fa-clock"></i> Check In
                         </button>
                     </form>
-                    <form id="attendance-form-out"
-                        action="{{ route('attendance.out') }}"
-                        method="POST" style="display: inline;">
+                    <form id="attendance-form-out" action="{{ route('attendance.out') }}" method="POST"
+                        style="display: inline;">
                         @csrf
                         @method('POST')
                         @php
                             $isVisibleCheckOut = false;
 
-                            if (!$attendance || ($attendance && !$attendance->clock_in) || ($attendance && $attendance->clock_out && $attendance->clock_out->isToday())) {
+                            if (
+                                !$attendance ||
+                                ($attendance && !$attendance->clock_in) ||
+                                ($attendance && $attendance->clock_out && $attendance->clock_out->isToday())
+                            ) {
                                 $isVisibleCheckOut = true;
                             }
                         @endphp

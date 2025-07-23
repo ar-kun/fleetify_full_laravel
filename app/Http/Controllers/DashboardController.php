@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -13,6 +12,7 @@ class DashboardController extends Controller
             ->where('employee_id', auth()->user()->employee_id)
             ->latest()
             ->first();
+
         return view('dashboard', compact('attendance'));
     }
 }

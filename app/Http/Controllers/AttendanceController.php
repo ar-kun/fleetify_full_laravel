@@ -10,7 +10,7 @@ class AttendanceController extends Controller
 {
     public function attendanceIn(Request $request)
     {
-        if (!$request->has('employee_id')) {
+        if (! $request->has('employee_id')) {
             return redirect()->back()->withErrors(['error' => 'Failed to check in. Please try again later.']);
         }
 
@@ -21,7 +21,7 @@ class AttendanceController extends Controller
             'clock_out' => null,
         ]);
 
-        if (!$attendance) {
+        if (! $attendance) {
             return redirect()->back()->withErrors(['error' => 'Failed to check in. Please try again later.']);
         }
 
@@ -37,7 +37,7 @@ class AttendanceController extends Controller
 
     public function attendanceOut(Request $request)
     {
-        if (!$request->has('employee_id')) {
+        if (! $request->has('employee_id')) {
             return redirect()->back()->withErrors(['error' => 'Failed to check out. Please try again later.']);
         }
 
@@ -46,7 +46,7 @@ class AttendanceController extends Controller
             ->latest()
             ->first();
 
-        if (!$attendance) {
+        if (! $attendance) {
             return redirect()->back()->withErrors(['error' => 'No active attendance found for check out.']);
         }
 
