@@ -12,7 +12,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -40,7 +42,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             window.confirmDeleteEntity = function(entityType, id) {
                 Swal.fire({
                     title: `Are you sure you want to delete this ${entityType}?`,
@@ -62,7 +64,7 @@
                     icon: 'success',
                     title: 'Success',
                     text: '{{ session('success') }}',
-                    timer: 3000, 
+                    timer: 3000,
                     showCloseButton: true
                 });
             @endif
@@ -72,7 +74,7 @@
                     icon: 'error',
                     title: 'Error',
                     text: '{{ session('error') }}',
-                    timer: 6000, 
+                    timer: 6000,
                     showCloseButton: true
                 });
             @endif
