@@ -29,8 +29,8 @@ class Department extends Model
     protected $table = 'departments';
 
     protected $casts = [
-        'max_clock_in_time' => 'datetime',
-        'max_clock_out_time' => 'datetime',
+        'max_clock_in_time' => 'string',
+        'max_clock_out_time' => 'string',
     ];
 
     protected $fillable = [
