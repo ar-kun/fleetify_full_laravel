@@ -68,7 +68,7 @@ class DepartmentController extends Controller
 
             return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
         } catch (\Throwable $th) {
-            Log::error('Failed to update department: ' . $th->getMessage(), ['exception' => $th]);
+            Log::error('Failed to update department: '.$th->getMessage(), ['exception' => $th]);
 
             return redirect()->back()->withErrors(['error' => 'Failed to update department. Please try again later.']);
         }

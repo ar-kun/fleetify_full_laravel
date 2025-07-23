@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EmployeeRequest;
 use App\Models\Department;
 use App\Models\Employee;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -17,6 +16,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::with('department')->latest()->paginate(5);
+
         return view('employees.index', compact('employees'));
     }
 
@@ -26,6 +26,7 @@ class EmployeeController extends Controller
     public function create()
     {
         $departments = Department::all();
+
         return view('employees.create', compact('departments'));
     }
 
@@ -36,8 +37,9 @@ class EmployeeController extends Controller
     {
         try {
             $data = $request->validated();
-            $data['employee_id'] = 'EMP-' . Str::random(10);
+            $data['employee_id'] = 'EMP-'.Str::random(10);
             Employee::create($data);
+
             return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
         } catch (\Throwable $th) {
             Log::error('Failed to create employee', ['exception' => $th]);
@@ -60,6 +62,7 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         $departments = Department::all();
+
         return view('employees.edit', compact('employee', 'departments'));
     }
 
@@ -71,6 +74,7 @@ class EmployeeController extends Controller
         try {
             $data = $request->validated();
             $employee->update($data);
+
             return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
         } catch (\Throwable $th) {
             Log::error('Failed to update employee', ['exception' => $th]);
@@ -86,6 +90,7 @@ class EmployeeController extends Controller
     {
         try {
             $employee->delete();
+
             return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
         } catch (\Throwable $th) {
             Log::error('Failed to delete employee', ['exception' => $th]);

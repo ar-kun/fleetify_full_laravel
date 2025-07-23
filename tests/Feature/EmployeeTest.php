@@ -44,7 +44,6 @@ class EmployeeTest extends TestCase
         $response->assertStatus(200);
     }
 
-
     /**
      * A test to ensure a employee can be created successfully.
      */
@@ -101,7 +100,6 @@ class EmployeeTest extends TestCase
         $response->assertRedirect(route('employees.index'));
         $this->assertDatabaseHas('employees', $data);
     }
-
 
     /**
      * A test to ensure a employee can be deleted successfully.
