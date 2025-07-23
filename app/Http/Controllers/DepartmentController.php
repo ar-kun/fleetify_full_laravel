@@ -13,7 +13,11 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::latest()->paginate(5);
+        $departments = Department::latest()
+            ->when(request('search'), function ($query) {
+                $query->where('department_name', 'like', '%'.request('search').'%');
+            })
+            ->paginate(5);
 
         return view('departments.index', compact('departments'));
     }

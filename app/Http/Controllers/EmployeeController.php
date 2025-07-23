@@ -15,7 +15,11 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::with('department')->latest()->paginate(5);
+        $employees = Employee::with('department')
+            ->when(request('search'), function ($query) {
+                $query->where('name', 'like', '%'.request('search').'%');
+            })
+            ->latest()->paginate(5);
 
         return view('employees.index', compact('employees'));
     }
