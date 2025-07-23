@@ -51,15 +51,20 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+        return view('departments.edit', compact('department'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Department $department)
+    public function update(DepartmentRequest $request, Department $department)
     {
-        //
+        try {
+            $department->update($request->validated());
+            return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors(['error' => 'Failed to update department: ' . $th->getMessage()]);
+        }
     }
 
     /**
