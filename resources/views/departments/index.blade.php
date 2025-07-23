@@ -25,7 +25,7 @@
                                             <input type="text" name="search" id="table-search"
                                                 value="{{ request('search') }}"
                                                 class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                                                placeholder="Search for employees...">
+                                                placeholder="Search for departments...">
                                         </div>
                                     </form>
                                 </div>
