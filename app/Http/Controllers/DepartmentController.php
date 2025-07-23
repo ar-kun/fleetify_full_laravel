@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DepartmentRequest;
 use App\Models\Department;
 use Illuminate\Http\Request;
 
@@ -21,15 +22,20 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('departments.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DepartmentRequest $request)
     {
-        //
+        try {
+            Department::create($request->validated());
+            return redirect()->route('departments.index')->with('success', 'Department created successfully.');
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors(['error' => 'Failed to create department: ' . $th->getMessage()]);
+        }
     }
 
     /**

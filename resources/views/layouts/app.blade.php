@@ -54,6 +54,26 @@
                     }
                 });
             };
+
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '{{ session('success') }}',
+                    timer: 3000, 
+                    showCloseButton: true
+                });
+            @endif
+
+            @if (session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: '{{ session('error') }}',
+                    timer: 6000, 
+                    showCloseButton: true
+                });
+            @endif
         });
     </script>
 
