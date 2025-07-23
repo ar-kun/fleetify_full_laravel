@@ -21,7 +21,7 @@
                 <!-- Departments Link -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('departments.index')" :active="request()->routeIs('departments.*')" class="flex gap-2">
-                        <i class="fa-solid fa-folder-open"></i> 
+                        <i class="fa-solid fa-folder-open"></i>
                         {{ __('Departments') }}
                     </x-nav-link>
                 </div>

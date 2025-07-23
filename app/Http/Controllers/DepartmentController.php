@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DepartmentRequest;
 use App\Models\Department;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class DepartmentController extends Controller
@@ -15,6 +14,7 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::paginate(5);
+
         return view('departments.index', compact('departments'));
     }
 
@@ -33,9 +33,11 @@ class DepartmentController extends Controller
     {
         try {
             Department::create($request->validated());
+
             return redirect()->route('departments.index')->with('success', 'Department created successfully.');
         } catch (\Throwable $th) {
             Log::error('Failed to create department', ['exception' => $th]);
+
             return redirect()->back()->withErrors(['error' => 'Failed to create department. Please try again later.']);
         }
     }
@@ -63,9 +65,11 @@ class DepartmentController extends Controller
     {
         try {
             $department->update($request->validated());
+
             return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
         } catch (\Throwable $th) {
-            Log::error('Failed to update department: ' . $th->getMessage(), ['exception' => $th]);
+            Log::error('Failed to update department: '.$th->getMessage(), ['exception' => $th]);
+
             return redirect()->back()->withErrors(['error' => 'Failed to update department. Please try again later.']);
         }
     }
@@ -77,9 +81,11 @@ class DepartmentController extends Controller
     {
         try {
             $department->delete();
+
             return redirect()->route('departments.index')->with('success', 'Department deleted successfully.');
         } catch (\Throwable $th) {
             Log::error('Failed to delete department', ['exception' => $th]);
+
             return redirect()->back()->withErrors(['error' => 'Failed to delete department. Please try again later.']);
         }
     }

@@ -18,13 +18,13 @@ class DepartmentRequest extends FormRequest
     {
         if ($this->has('max_clock_in_time') && strlen($this->max_clock_in_time) === 5) {
             $this->merge([
-                'max_clock_in_time' => $this->max_clock_in_time . ':00',
+                'max_clock_in_time' => $this->max_clock_in_time.':00',
             ]);
         }
 
         if ($this->has('max_clock_out_time') && strlen($this->max_clock_out_time) === 5) {
             $this->merge([
-                'max_clock_out_time' => $this->max_clock_out_time . ':00',
+                'max_clock_out_time' => $this->max_clock_out_time.':00',
             ]);
         }
     }
