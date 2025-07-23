@@ -15,7 +15,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::with('department')->paginate(5);
+        $employees = Employee::with('department')->latest()->paginate(5);
         return view('employees.index', compact('employees'));
     }
 
@@ -58,15 +58,24 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        $departments = \App\Models\Department::all();
+        return view('employees.edit', compact('employee', 'departments'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employee $employee)
+    public function update(EmployeeRequest $request, Employee $employee)
     {
-        //
+        try {
+            $data = $request->validated();
+            $employee->update($data);
+            return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
+        } catch (\Throwable $th) {
+            Log::error('Failed to update employee', ['exception' => $th]);
+
+            return redirect()->back()->withErrors(['error' => 'Failed to update employee. Please try again later.']);
+        }
     }
 
     /**
@@ -74,6 +83,13 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        try {
+            $employee->delete();
+            return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
+        } catch (\Throwable $th) {
+            Log::error('Failed to delete employee', ['exception' => $th]);
+
+            return redirect()->back()->withErrors(['error' => 'Failed to delete employee. Please try again later.']);
+        }
     }
 }
